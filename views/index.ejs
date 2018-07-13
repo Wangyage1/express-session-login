@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>express + seesion 登录demo</title>
+    <link rel='stylesheet' href='/style/style.css' />
+</head>
+<body>
+    <h1>express 登录demo</h1>
+    <% if(login) {%>
+        <p><%= username %>，欢迎你！</p>
+        <p><a href='/logout'>退出登录</a></p>
+    <% } else {%>
+        <form>
+            用户名：<input type="text" name='username' id='username' value='Eleanor'/><br/><br/>
+            密 &nbsp;&nbsp;码：<input type="password" name='password' id='password' value='123456'/><br/><br/>
+            <input type="submit" id='login' value='登录'/>
+        </form>
+    <% } %>
+    <script src='/js/jquery-3.3.1.min.js'></script>
+    <script>
+        $('#login').click((e) => {
+            e.preventDefault();
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                data: {
+                    username: $('#username').val().trim(),
+                    password: $('#password').val().trim()
+                },
+                success: (data) => {
+                    
+                    if(data.code === 0) {
+                        window.location.href='/';
+                    } else {
+                        alert(data.msg)  
+                    }
+                },
+                error: (data) => {
+                    alert('登录失败!');
+                    console.log('errorInfo', data);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

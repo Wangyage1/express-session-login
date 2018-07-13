@@ -1,0 +1,16 @@
+{
+  "name": "express-login",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "ejs": "*",
+    "express": "3.2.2",
+    "express-session": "^1.15.6",
+    "session-file-store": "^1.2.0"
+  }
+}
